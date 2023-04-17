@@ -6,8 +6,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import javax.management.RuntimeErrorException;
-
 public class App {
 
     private static Connection connection;
@@ -19,7 +17,7 @@ public class App {
             createData("Breve historia del tiempo", "Editorial Planeta");
             createData("El que a hierro mata", "Seix Barral");
             readData();
-            updateData("El que a hierro mata", "J. J.");
+            updateData("El que a hierro mata", "J. A.");
             deleteData("Breve historia del tiempo");
 
         } finally {
@@ -29,10 +27,28 @@ public class App {
 
     // ----------- crud operations ----------
 
-    private static void deleteData(String titulo) {
+    private static void deleteData(String titulo) throws SQLException {
+        try (PreparedStatement statement = connection.prepareStatement(
+                "DELETE FROM libros " +
+                        "WHERE titulo LIKE ?")) {
+            statement.setString(1, titulo);
+            int rowSelected = statement.executeUpdate();
+            System.out.println("Rows deleted: " + rowSelected);
+        }
     }
 
-    private static void updateData(String titulo, String autor) {
+    private static void updateData(String titulo, String autor) throws SQLException {
+        System.out.println("Updating data...");
+        try (PreparedStatement statement = connection.prepareStatement(
+                "UPDATE libros " +
+                        "SET autor = ? " +
+                        "WHERE titulo = ?")) {
+            statement.setString(1, autor);
+            statement.setString(2, titulo);
+            int rowsUpdated = statement.executeUpdate();
+            System.out.println("Rows updated: " + rowsUpdated);
+        }
+
     }
 
     private static void readData() throws SQLException {
@@ -41,11 +57,15 @@ public class App {
                 "SELECT titulo, autor " +
                         "FROM libros")) {
             ResultSet resultset = statement.executeQuery();
+            boolean empty = true;
             while (resultset.next()) {
                 String titulo = resultset.getString(1);
                 String autor = resultset.getString(2);
                 System.out.println("\t>" + titulo + ":" + autor);
-
+                empty = false;
+            }
+            if (empty) {
+                System.out.println("\t");
             }
         }
     }
@@ -60,14 +80,12 @@ public class App {
             statement.setString(2, autor);
             rowsInserted = statement.executeUpdate();
         }
-
         System.out.println("Rows inserted: " + rowsInserted);
     }
 
     public static void openDataBaseConnection() throws SQLException {
 
         System.out.println("Connecting to the database...");
-
         connection = DriverManager.getConnection(
                 "jdbc:mariadb://localhost:3306/biblioteca_JDBC",
                 "root", "1234567890");
