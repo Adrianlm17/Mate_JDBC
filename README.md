@@ -3,7 +3,7 @@
 
 # Introducción
 
-En el siguiente repositorio vamos a mostrar una conexión simple con la base de datos usando las dos formas distintas de JDBC, una normal y la otra conexión Pool. Despues implementaremos una APIREST usando JPA.
+En el siguiente repositorio vamos a mostrar una conexión simple con la base de datos usando las dos formas distintas de JDBC, una normal y la otra conexión Pool. Despues implementaremos una APIREST usando JPA. Para ello vamos a crear un proyecto usando el framework [Spring Boot](https://start.spring.io/) para Java.
 
 JPA y JDBC son dos tecnologías diferentes que se utilizan para acceder a bases de datos desde una aplicación Java.
 
@@ -12,6 +12,8 @@ JDBC (Java Database Connectivity) es una API de Java que proporciona un conjunto
 Por otro lado, JPA (Java Persistence API) es una especificación de Java que proporciona un conjunto de clases e interfaces para trabajar con bases de datos relacionales de manera más fácil y eficiente. JPA es una capa de abstracción que oculta los detalles de la base de datos subyacente y permite al programador interactuar con los objetos Java en lugar de con la base de datos. JPA utiliza un ORM (Object-Relational Mapping) para mapear los objetos Java a tablas en la base de datos y viceversa, lo que significa que el programador no tiene que escribir consultas SQL manualmente.
 
 En resumen, la principal diferencia entre JDBC y JPA es que JDBC es una API para interactuar con la base de datos directamente, mientras que JPA es una capa de abstracción que utiliza un ORM para mapear los objetos Java a la base de datos. JPA es más fácil de usar y más eficiente que JDBC, pero JDBC ofrece un mayor control sobre la interacción con la base de datos.
+
+Por ello puedes encontrar una versión de nuestro trabajo JDBC en la rama [pool](https://github.com/Adrianlm17/Mate_JDBC/tree/pool), otra versión del trabajo usando JPA en la rama [JPA](https://github.com/Adrianlm17/Mate_JDBC/tree/JPA) y por último, en la rama [principal](https://github.com/Adrianlm17/Mate_JDBC/tree/main) utilizamos todos esos desarrollos previos para implementar una APIREST apoyandonos en Spring.
 
 # Índice
 
