@@ -7,12 +7,14 @@ public class Application {
     private static JPAService jpaService = JPAService.getInstance();
 
     public static void main(String[] args) {
+        
         try {
 
             createProgrammingLanguages();
             printTopProgrammingLanguages();
 
         } finally {
+            
             jpaService.shutdown();
         }
     }
