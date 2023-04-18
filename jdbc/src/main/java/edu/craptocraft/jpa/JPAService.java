@@ -14,7 +14,7 @@ public class JPAService {
     private EntityManagerFactory entityManagerFactory;
 
     private JPAService() {
-        entityManagerFactory = Persistence.createEntityManagerFactory("jpa-biblioteca-demo-local");
+        entityManagerFactory = Persistence.createEntityManagerFactory("jpa-demo-local");
     }
 
     public static synchronized JPAService getInstance() {
