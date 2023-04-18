@@ -43,6 +43,19 @@ mvn clean install
 
 # Uso
 
+## JDBC
+
+## JPA
+
+## API JPA
+
+Para implementar todo el conocimiento adquirido con el contenido de la unidad teniendo en cuenta lo aprendido tanto de JDBC como de JPA, hemos creado una API que realiza un CRUD sobre nuestra base de datos.
+
+En el siguiente postman después de haber iniciado la aplicación ejecutando el la clase principal `LibreriasAplication.java`, puedes `LEER todos LOS LIBROS`, `AÑADIR`, `BUSCAR`, `ELIMINAR`.
+
+
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://god.gw.postman.com/run-collection/24367189-304016c1-1de3-468d-b641-a6a15a347e51?action=collection%2Ffork&collection-url=entityId%3D24367189-304016c1-1de3-468d-b641-a6a15a347e51%26entityType%3Dcollection%26workspaceId%3D6054a904-5fac-4f5b-937f-3c38ba681f2c)
+
 # Requisitos
 
 # Mejoras
