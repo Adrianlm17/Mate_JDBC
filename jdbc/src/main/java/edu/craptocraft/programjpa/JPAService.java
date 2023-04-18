@@ -2,9 +2,9 @@ package edu.craptocraft.programjpa;
 
 import java.util.function.Function;
 
-import javax.swing.text.html.parser.Entity;
-
+import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.Persistence;
 
 public class JPAService {
@@ -34,7 +34,7 @@ public class JPAService {
 
     public <T> T runInTransaction(Function<EntityManager, T> function){
 
-        EntityManager entityManager = entityManagerFactory.createEntityManagerFactory();
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
         EntityTransaction transaction = entityManager.getTransaction();
         
         //INDICA QUE EL EXITO ES FALSO Y LUEGO CUANDO YA REALIZO TODO PASE A SER TRUE
@@ -44,7 +44,7 @@ public class JPAService {
         transaction.begin();
 
         try {
-            
+
             T returnValue = function.apply(entityManager);
             success = true;
             return returnValue;

@@ -1,7 +1,6 @@
 package edu.craptocraft.programjpa;
 
-import jakarta.persistence.EntityManagerFactory;
-
+import java.util.List;
 
 public class Application {
     
@@ -11,7 +10,7 @@ public class Application {
         try {
 
             createProgrammingLanguages();
-            printProgrammingLanguages();
+            printTopProgrammingLanguages();
 
         } finally {
             jpaService.shutdown();
@@ -39,7 +38,7 @@ public class Application {
                 ).getResultList());
 
         list.stream()
-				.map(pl -> pl.getName() + ": " + pl.getRating())
+				.map(lp -> lp.getNombre() + ": " + lp.getNota())
 				.forEach(System.out::println);
 	}
 }
