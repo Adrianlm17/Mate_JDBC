@@ -4,10 +4,12 @@ import java.util.Objects;
 
 import jakarta.persistence.*;
 
+//ASIGNAR A LA TABLA DE BASE DE DATOS
 @Entity
 @Table(nombre = "leguaje_programa")
 public class ProgrammingLanguage {
 
+    //ASIGNAMOS ID AL ENTITY
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     
