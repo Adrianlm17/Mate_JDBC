@@ -1,19 +1,22 @@
-package edu.craptocraft.programjpa;
+package edu.craptocraft.programjdbc;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class Crud {
+import com.zaxxer.hikari.HikariDataSource;
 
-    private static Connection connection;
+public class CrudPool {
 
-    public Crud(Connection connection) {
-        this.connection = connection;
+    private static HikariDataSource dataSource;
+
+    public CrudPool(HikariDataSource connection) {
+        this.dataSource = connection;
     }
 
     public static void delete(String titulo) throws SQLException {
+        Connection connection = dataSource.getConnection();
         try (PreparedStatement statement = connection.prepareStatement(
                 "DELETE FROM libros " +
                         "WHERE titulo LIKE ?")) {
@@ -25,6 +28,7 @@ public class Crud {
 
     public static void update(String titulo, String autor) throws SQLException {
         System.out.println("Updating data...");
+        Connection connection = dataSource.getConnection();
         try (PreparedStatement statement = connection.prepareStatement(
                 "UPDATE libros " +
                         "SET autor = ? " +
@@ -39,6 +43,7 @@ public class Crud {
 
     public static void read() throws SQLException {
         System.out.println("Reading data...");
+        Connection connection = dataSource.getConnection();
         try (PreparedStatement statement = connection.prepareStatement(
                 "SELECT titulo, autor " +
                         "FROM libros")) {
@@ -53,7 +58,8 @@ public class Crud {
     }
 
     public static void create(String titulo, String autor) throws SQLException {
-        System.out.println("Connecting to the database...");
+        System.out.println("Creating data...");
+        Connection connection = dataSource.getConnection();
         int rowsInserted;
         try (PreparedStatement statement = connection.prepareStatement(
                 "INSERT INTO libros(titulo, autor)" +
