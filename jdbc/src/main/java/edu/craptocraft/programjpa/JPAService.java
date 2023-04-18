@@ -1,5 +1,7 @@
 package edu.craptocraft.programjpa;
 
+import java.util.function.Function;
+
 import javax.swing.text.html.parser.Entity;
 
 import jakarta.persistence.EntityManagerFactory;
@@ -30,4 +32,30 @@ public class JPAService {
         return entityManagerFactory;
     }
 
+    public <T> T runInTransaction(Function<EntityManager, T> function){
+
+        EntityManager entityManager = entityManagerFactory.createEntityManagerFactory();
+        EntityTransaction transaction = entityManager.getTransaction();
+        
+        //INDICA QUE EL EXITO ES FALSO Y LUEGO CUANDO YA REALIZO TODO PASE A SER TRUE
+        boolean success = false;
+
+        //COMENZAMOS LA TRANSACCIÓN
+        transaction.begin();
+
+        try {
+            
+            T returnValue = function.apply(entityManager);
+            success = true;
+            return returnValue;
+
+        } finally {
+            // SI FUE EXITOSO LO GUARDA SI NO HACE UN ROLLBACK
+            if (success) {
+                transaction.commit();
+            } else {
+                transaction.rollback();
+            }
+        }
+    }
 }

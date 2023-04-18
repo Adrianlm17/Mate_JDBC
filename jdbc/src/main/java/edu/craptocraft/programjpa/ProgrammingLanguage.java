@@ -5,12 +5,19 @@ import java.util.Objects;
 import jakarta.persistence.*;
 
 @Entity
+@Table(nombre = "leguaje_programa")
 public class ProgrammingLanguage {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    
+    @Column (name = "lp_id") //Aqui las iniciales del table + _ + lo que buscamos (en este caso id)
     private Integer id;
+    
+    @Column (name = "lp_name")
     private String nombre;
+
+    @Column (name = "lp_nota")
     private Integer nota;
     
     public ProgrammingLanguage(){
