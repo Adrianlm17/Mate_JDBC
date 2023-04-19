@@ -36,10 +36,9 @@ public class JPAService {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         EntityTransaction transaction = entityManager.getTransaction();
 
-        // INDICA QUE EL EXITO ES FALSO Y LUEGO CUANDO YA REALIZO TODO PASE A SER TRUE
+        
         boolean success = false;
 
-        // COMENZAMOS LA TRANSACCIÓN
         transaction.begin();
 
         try {
@@ -49,7 +48,7 @@ public class JPAService {
             return returnValue;
 
         } finally {
-            // SI FUE EXITOSO LO GUARDA SI NO HACE UN ROLLBACK
+
             if (success) {
                 transaction.commit();
             } else {
