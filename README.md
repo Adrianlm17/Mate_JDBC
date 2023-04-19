@@ -132,7 +132,35 @@ A continuación vamos a explicar como utilizar cada apartado para poder usarlo s
 
 Si hemos llegado hasta este apartado significa que ya tenemos preparado todo he instalado, solo nos faltara entender como funciona, para posteriormente ser usado. 
 
-Primero de todo tenemos que 
+Antes de poder hacer uso de nuestro App, tendremos que dirigirnos a nuestro archivo [ConnectionService](https://github.com/Adrianlm17/Mate_JDBC/blob/pool/jdbc/src/main/java/edu/craptocraft/programjdbc/ConnectionService.java), el cual tendremos que modificar los siguientes elementos:
+
+- URL
+- Usuario
+- Contraseña
+
+En nuestro caso lo tenemos así:
+
+```
+globalConnection = DriverManager.getConnection(
+
+                "jdbc:mariadb://localhost:3306/biblioteca_JDBC",
+                "root", "1234567890");
+```
+
+De esta forma guardamos en la variable "globalConnection" la configuración que nos permitirá conectarnos a nuestra base de datos.
+
+Una vez tenemos configurado dicho archivo, Tendremos que realizar la misma configuración en el archivo [ConnectionServicePool](https://github.com/Adrianlm17/Mate_JDBC/blob/pool/jdbc/src/main/java/edu/craptocraft/programjdbc/ConnectionServicePool.java), en nuestro caso lo tenemos de la siguiente manera:
+
+```
+dataSource = new HikariDataSource();
+dataSource.setJdbcUrl("jdbc:mariadb://localhost:3306/biblioteca_JDBC");
+dataSource.setUsername("root");
+dataSource.setPassword("1234567890");
+```
+
+Por último, pero no menos importante, solo tendremos que configurar nuestros archivos [CRUD](https://github.com/Adrianlm17/Mate_JDBC/blob/pool/jdbc/src/main/java/edu/craptocraft/programjdbc/Crud.java) y [CrudPool](https://github.com/Adrianlm17/Mate_JDBC/blob/pool/jdbc/src/main/java/edu/craptocraft/programjdbc/CrudPool.java), en función de las querys y uso que queramos realizar.
+
+Una vez tenemos esos archivos configurados, nos dirigiremos a nuestro archivo [App](https://github.com/Adrianlm17/Mate_JDBC/blob/pool/jdbc/src/main/java/edu/craptocraft/App.java) y tendremos que añadir las querys necesarias en función de nuestras necesidades. Cuando ya tengamos todo, podremos ejecutar dicho archivo.
 
 ## JPA
 
