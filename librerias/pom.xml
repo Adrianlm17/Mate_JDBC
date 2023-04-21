@@ -49,18 +49,21 @@
 	</dependencies>
 
 	<build>
-		<plugins>
+		<plugins>        
 			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-				<configuration>
-					<excludes>
-						<exclude>
-							<groupId>org.projectlombok</groupId>
-							<artifactId>lombok</artifactId>
-						</exclude>
-					</excludes>
-				</configuration>
+			<artifactId>maven-jar-plugin</artifactId>
+			<version>3.0.2</version>
+			<configuration>
+				<archive>
+				<manifest>
+					<addClasspath>true</addClasspath>
+					<mainClass>edu.craptocraft.src.LibreriasApplication</mainClass>
+				</manifest>
+				<manifestEntries>
+					<url>${project.url}</url>
+				</manifestEntries>
+				</archive>
+			</configuration>
 			</plugin>
 		</plugins>
 	</build>
